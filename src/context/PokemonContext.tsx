@@ -1,3 +1,7 @@
+/* eslint-disable react/react-in-jsx-scope */
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable react/prop-types */
 import { createContext, useContext, useState } from "react";
 import { fetchPokemonDetails, fetchPokemonList } from "../service/api";
 

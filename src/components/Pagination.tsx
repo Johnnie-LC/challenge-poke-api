@@ -1,3 +1,4 @@
+/* eslint-disable react/react-in-jsx-scope */
 import { usePokemonContext } from "../context/PokemonContext";
 
 const Pagination: React.FC = () => {
