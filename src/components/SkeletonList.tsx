@@ -10,7 +10,7 @@ const SkeletonList: React.FC = () => {
           <SkeletonItem key={index} />
         ))}
       </div>
-      <Pagination />
+      <Pagination isSkeleton />
     </>
   );
 };
