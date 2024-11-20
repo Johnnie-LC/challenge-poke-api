@@ -8,20 +8,25 @@ vi.mock("../../src/context/PokemonContext", () => ({
   usePokemonContext: vi.fn(),
 }));
 
+const renderFilterPokemonWithContext = (searchTerm, filteredPokemons) => {
+  const mockFetchPokemonDetail = vi.fn();
+
+  (usePokemonContext as jest.Mock).mockReturnValue({
+    searchTerm,
+    filteredPokemons,
+    fetchPokemonDetail: mockFetchPokemonDetail,
+  });
+
+  render(<FilterPokemon />);
+  return mockFetchPokemonDetail;
+};
+
 describe("FilterPokemon", () => {
   it("muestra los resultados filtrados cuando hay un término de búsqueda", () => {
-    const mockFetchPokemonDetail = vi.fn();
-
-    (usePokemonContext as jest.Mock).mockReturnValue({
-      searchTerm: "bul",
-      filteredPokemons: [
-        { name: "Bulbasaur", url: "https://pokeapi.co/api/v2/pokemon/1" },
-        { name: "Charmander", url: "https://pokeapi.co/api/v2/pokemon/4" },
-      ],
-      fetchPokemonDetail: mockFetchPokemonDetail,
-    });
-
-    render(<FilterPokemon />);
+    renderFilterPokemonWithContext("bul", [
+      { name: "Bulbasaur", url: "https://pokeapi.co/api/v2/pokemon/1" },
+      { name: "Charmander", url: "https://pokeapi.co/api/v2/pokemon/4" },
+    ]);
 
     const listItems = screen.getAllByRole("listitem");
 
@@ -30,18 +35,10 @@ describe("FilterPokemon", () => {
   });
 
   it("no muestra resultados si el término de búsqueda no coincide con ningún Pokémon", () => {
-    const mockFetchPokemonDetail = vi.fn();
-
-    (usePokemonContext as jest.Mock).mockReturnValue({
-      searchTerm: "xyz",
-      filteredPokemons: [
-        { name: "Bulbasaur", url: "https://pokeapi.co/api/v2/pokemon/1" },
-        { name: "Charmander", url: "https://pokeapi.co/api/v2/pokemon/4" },
-      ],
-      fetchPokemonDetail: mockFetchPokemonDetail,
-    });
-
-    render(<FilterPokemon />);
+    renderFilterPokemonWithContext("xyz", [
+      { name: "Bulbasaur", url: "https://pokeapi.co/api/v2/pokemon/1" },
+      { name: "Charmander", url: "https://pokeapi.co/api/v2/pokemon/4" },
+    ]);
 
     const listItems = screen.queryAllByRole("listitem");
 
@@ -49,18 +46,10 @@ describe("FilterPokemon", () => {
   });
 
   it("llama a fetchPokemonDetail cuando se hace clic en un Pokémon", () => {
-    const mockFetchPokemonDetail = vi.fn();
-
-    (usePokemonContext as jest.Mock).mockReturnValue({
-      searchTerm: "bul",
-      filteredPokemons: [
-        { name: "Bulbasaur", url: "https://pokeapi.co/api/v2/pokemon/1" },
-        { name: "Charmander", url: "https://pokeapi.co/api/v2/pokemon/4" },
-      ],
-      fetchPokemonDetail: mockFetchPokemonDetail,
-    });
-
-    render(<FilterPokemon />);
+    const mockFetchPokemonDetail = renderFilterPokemonWithContext("bul", [
+      { name: "Bulbasaur", url: "https://pokeapi.co/api/v2/pokemon/1" },
+      { name: "Charmander", url: "https://pokeapi.co/api/v2/pokemon/4" },
+    ]);
 
     const listItem = screen.getByText("Bulbasaur");
 
@@ -72,18 +61,10 @@ describe("FilterPokemon", () => {
   });
 
   it("no muestra nada si no hay término de búsqueda", () => {
-    const mockFetchPokemonDetail = vi.fn();
-
-    (usePokemonContext as jest.Mock).mockReturnValue({
-      searchTerm: "",
-      filteredPokemons: [
-        { name: "Bulbasaur", url: "https://pokeapi.co/api/v2/pokemon/1" },
-        { name: "Charmander", url: "https://pokeapi.co/api/v2/pokemon/4" },
-      ],
-      fetchPokemonDetail: mockFetchPokemonDetail,
-    });
-
-    render(<FilterPokemon />);
+    renderFilterPokemonWithContext("", [
+      { name: "Bulbasaur", url: "https://pokeapi.co/api/v2/pokemon/1" },
+      { name: "Charmander", url: "https://pokeapi.co/api/v2/pokemon/4" },
+    ]);
 
     const list = screen.queryByRole("list");
     expect(list).not.toBeInTheDocument();

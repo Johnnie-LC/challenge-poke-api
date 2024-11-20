@@ -51,7 +51,6 @@ describe("PokemonDetail", () => {
     };
     const mockSetSelectedPokemon = vi.fn();
 
-    // Mock del contexto
     (usePokemonContext as jest.Mock).mockReturnValue({
       selectedPokemon: mockSelectedPokemon,
       setSelectedPokemon: mockSetSelectedPokemon,
