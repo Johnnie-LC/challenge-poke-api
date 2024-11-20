@@ -4,7 +4,6 @@ import Pagination from "_domain/components/Pagination";
 import { usePokemonContext } from "_domain/context/PokemonContext";
 import { vi } from "vitest";
 
-// Mock del contexto
 vi.mock("../../src/context/PokemonContext", () => ({
   usePokemonContext: vi.fn(),
 }));
@@ -34,7 +33,6 @@ describe("Pagination", () => {
   it("habilita el botón 'Anterior' cuando no está en la primera página", () => {
     const mockSetCurrentPage = vi.fn();
 
-    // Mock del contexto
     (usePokemonContext as jest.Mock).mockReturnValue({
       currentPage: 2,
       setCurrentPage: mockSetCurrentPage,
