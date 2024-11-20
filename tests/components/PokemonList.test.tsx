@@ -1,16 +1,15 @@
 /* eslint-disable react/react-in-jsx-scope */
 
 import { fireEvent, render, screen } from "@testing-library/react";
+import PokemonList from "_domain/components/PokemonList";
+import { usePokemonContext } from "_domain/context/PokemonContext";
 import { describe, expect, it, vi } from "vitest";
-import PokemonList from "./PokemonList";
 
-vi.mock("../context/PokemonContext", () => {
+vi.mock("../../src/context/PokemonContext", () => {
   return {
     usePokemonContext: vi.fn(),
   };
 });
-
-import { usePokemonContext } from "../context/PokemonContext";
 
 describe("PokemonList", () => {
   it("renderiza la lista de Pokémon correctamente", () => {

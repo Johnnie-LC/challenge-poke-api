@@ -1,13 +1,12 @@
 /* eslint-disable react/react-in-jsx-scope */
 import { fireEvent, render, screen } from "@testing-library/react";
+import SearchBar from "_domain/components/SearchBar";
+import { usePokemonContext } from "_domain/context/PokemonContext";
 import { vi } from "vitest";
-import SearchBar from "./SearchBar";
 
-vi.mock("../context/PokemonContext", () => ({
+vi.mock("../../src/context/PokemonContext", () => ({
   usePokemonContext: vi.fn(),
 }));
-
-import { usePokemonContext } from "../context/PokemonContext";
 
 describe("SearchBar", () => {
   it("renderiza el input correctamente con el valor inicial", () => {

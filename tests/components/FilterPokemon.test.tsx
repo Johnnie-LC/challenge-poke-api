@@ -1,10 +1,10 @@
 /* eslint-disable react/react-in-jsx-scope */
 import { fireEvent, render, screen } from "@testing-library/react";
+import { FilterPokemon } from "_domain/components/FilterPokemon";
+import { usePokemonContext } from "_domain/context/PokemonContext";
 import { vi } from "vitest";
-import { usePokemonContext } from "../context/PokemonContext";
-import { FilterPokemon } from "./FilterPokemon";
 
-vi.mock("../context/PokemonContext", () => ({
+vi.mock("../../src/context/PokemonContext", () => ({
   usePokemonContext: vi.fn(),
 }));
 
@@ -32,7 +32,6 @@ describe("FilterPokemon", () => {
   it("no muestra resultados si el término de búsqueda no coincide con ningún Pokémon", () => {
     const mockFetchPokemonDetail = vi.fn();
 
-    // Mock del contexto
     (usePokemonContext as jest.Mock).mockReturnValue({
       searchTerm: "xyz",
       filteredPokemons: [
@@ -46,7 +45,6 @@ describe("FilterPokemon", () => {
 
     const listItems = screen.queryAllByRole("listitem");
 
-    // Verificar que no se muestran elementos cuando no hay coincidencias
     expect(listItems.length).toBe(0);
   });
 
@@ -66,10 +64,8 @@ describe("FilterPokemon", () => {
 
     const listItem = screen.getByText("Bulbasaur");
 
-    // Simular clic en el primer Pokémon
     fireEvent.click(listItem);
 
-    // Verificar que se llama a fetchPokemonDetail con la URL correcta
     expect(mockFetchPokemonDetail).toHaveBeenCalledWith(
       "https://pokeapi.co/api/v2/pokemon/1"
     );

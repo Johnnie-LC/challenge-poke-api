@@ -1,14 +1,13 @@
 /* eslint-disable react/react-in-jsx-scope */
 import { fireEvent, render, screen } from "@testing-library/react";
+import Pagination from "_domain/components/Pagination";
+import { usePokemonContext } from "_domain/context/PokemonContext";
 import { vi } from "vitest";
-import Pagination from "./Pagination";
 
 // Mock del contexto
-vi.mock("../context/PokemonContext", () => ({
+vi.mock("../../src/context/PokemonContext", () => ({
   usePokemonContext: vi.fn(),
 }));
-
-import { usePokemonContext } from "../context/PokemonContext";
 
 describe("Pagination", () => {
   it("renderiza correctamente con la página inicial", () => {

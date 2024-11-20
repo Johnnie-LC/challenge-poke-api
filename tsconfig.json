@@ -1,10 +1,16 @@
 {
   "files": [],
   "references": [
-    { "path": "./tsconfig.app.json" },
-    { "path": "./tsconfig.node.json" }
+   { "path": "./tsconfig.node.json" }
   ],
   "compilerOptions": {
-    "types": ["vitest/globals", "vitest/jsdom"]
-  }
+    "jsx": "react-jsx",
+    "baseUrl": "./",
+    "paths": {
+      "_domain/*": ["./src/*"],
+      "_components": ["./src/components/*"]
+    },
+    "types": ["vitest/globals", "vitest/jsdom", "@testing-library/jest-dom"]
+  },
+  "include": ["src", "tests"],
 }
