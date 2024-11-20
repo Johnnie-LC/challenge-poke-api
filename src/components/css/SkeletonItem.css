@@ -1,0 +1,38 @@
+.skeleton-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px;
+  margin-bottom: 5px;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  background-color: #354a62e0;
+  animation: shimmer 1.5s infinite linear;
+  min-width: 300px;
+}
+
+
+  
+  .skeleton-avatar {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #e0e0e0;
+  }
+  
+  .skeleton-text {
+    flex: 1;
+    height: 12px;
+    background: #e0e0e0;
+    border-radius: 4px;
+  }
+  
+  @keyframes shimmer {
+    0% {
+      background-position: -200px 0;
+    }
+    100% {
+      background-position: calc(200px + 100%) 0;
+    }
+  }
+  
