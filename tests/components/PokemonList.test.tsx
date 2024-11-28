@@ -1,11 +1,9 @@
-/* eslint-disable react/react-in-jsx-scope */
-
 import { fireEvent, render, screen } from "@testing-library/react";
-import PokemonList from "_domain/components/PokemonList";
-import { usePokemonContext } from "_domain/context/PokemonContext";
+import PokemonList from "_/components/PokemonList";
+import { usePokemonContext } from "_context/PokemonContext";
 import { describe, expect, it, vi } from "vitest";
 
-vi.mock("../../src/context/PokemonContext", () => {
+vi.mock("_context/PokemonContext", () => {
   return {
     usePokemonContext: vi.fn(),
   };

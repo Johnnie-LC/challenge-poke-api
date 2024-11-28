@@ -1,5 +1,4 @@
-/* eslint-disable react/react-in-jsx-scope */
-import "./css/SkeletonItem.css";
+import "_components/css/SkeletonItem.css";
 
 const SkeletonItem: React.FC = () => {
   return (

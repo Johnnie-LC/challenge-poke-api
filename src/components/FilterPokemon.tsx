@@ -1,5 +1,4 @@
-/* eslint-disable react/react-in-jsx-scope */
-import { usePokemonContext } from "../context/PokemonContext";
+import { usePokemonContext } from "_context/PokemonContext";
 
 export const FilterPokemon: React.FC = () => {
   const { searchTerm, filteredPokemons, fetchPokemonDetail } =

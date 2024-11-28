@@ -1,10 +1,9 @@
-/* eslint-disable react/react-in-jsx-scope */
 import { fireEvent, render, screen } from "@testing-library/react";
-import SearchBar from "_domain/components/SearchBar";
-import { usePokemonContext } from "_domain/context/PokemonContext";
+import SearchBar from "_/components/SearchBar";
+import { usePokemonContext } from "_context/PokemonContext";
 import { vi } from "vitest";
 
-vi.mock("../../src/context/PokemonContext", () => ({
+vi.mock("_context/PokemonContext", () => ({
   usePokemonContext: vi.fn(),
 }));
 

@@ -1,9 +1,9 @@
-import React from "react";
-import "./App.css";
-import { AppContent } from "./AppContent";
-import { PokemonProvider } from "./context/PokemonContext";
+import "_/App.css";
+import { AppContent } from "_/AppContent";
+import { PokemonProvider } from "_context/PokemonContext";
+import { FC } from "react";
 
-const App: React.FC = () => (
+const App: FC = () => (
   <PokemonProvider>
     <AppContent />
   </PokemonProvider>

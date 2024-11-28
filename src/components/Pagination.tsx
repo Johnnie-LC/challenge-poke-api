@@ -1,11 +1,11 @@
-import React from "react";
-import { usePokemonContext } from "../context/PokemonContext";
+import { usePokemonContext } from "_context/PokemonContext";
+import { FC } from "react";
 
 interface PaginationProps {
   isSkeleton?: boolean;
 }
 
-const Pagination: React.FC<PaginationProps> = ({ isSkeleton = false }) => {
+const Pagination: FC<PaginationProps> = ({ isSkeleton = false }) => {
   const { currentPage, setCurrentPage } = usePokemonContext();
 
   const handlePrevious = () => {

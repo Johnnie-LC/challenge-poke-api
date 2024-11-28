@@ -1,32 +1,28 @@
-/* eslint-disable react/react-in-jsx-scope */
 import { render, screen, waitFor } from "@testing-library/react";
-import { AppContent } from "_domain/AppContent";
-import {
-  PokemonProvider,
-  usePokemonContext,
-} from "_domain/context/PokemonContext";
+import { AppContent } from "_/AppContent";
+import { PokemonProvider, usePokemonContext } from "_context/PokemonContext";
 import { describe, expect, it, vi } from "vitest";
 
-vi.mock("_domain/context/PokemonContext", () => ({
+vi.mock("_context/PokemonContext", () => ({
   usePokemonContext: vi.fn(),
   PokemonProvider: ({ children }: { children: React.ReactNode }) => (
     <div>{children}</div>
   ),
 }));
 
-vi.mock("_domain/components/SkeletonList", () => ({
+vi.mock("_/components/SkeletonList", () => ({
   default: () => <div>Loading...</div>,
 }));
 
-vi.mock("_domain/components/FilterPokemon", () => ({
+vi.mock("_/components/FilterPokemon", () => ({
   FilterPokemon: () => <div>FilterPokemon Component</div>,
 }));
 
-vi.mock("_domain/components/PokemonDetail", () => ({
+vi.mock("_/components/PokemonDetail", () => ({
   default: () => <div>PokemonDetail Component</div>,
 }));
 
-vi.mock("_domain/components/PokemonList", () => ({
+vi.mock("_/components/PokemonList", () => ({
   default: () => <div>PokemonList Component</div>,
 }));
 

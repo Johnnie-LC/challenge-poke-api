@@ -1,6 +1,5 @@
-/* eslint-disable react/react-in-jsx-scope */
-import Pagination from "./Pagination";
-import SkeletonItem from "./SkeletonItem";
+import Pagination from "_components/Pagination";
+import SkeletonItem from "_components/SkeletonItem";
 
 const SkeletonList: React.FC = () => {
   return (

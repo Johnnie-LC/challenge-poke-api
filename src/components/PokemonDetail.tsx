@@ -1,7 +1,7 @@
-import React from "react";
-import { usePokemonContext } from "../context/PokemonContext";
+import { usePokemonContext } from "_context/PokemonContext";
+import { FC } from "react";
 
-const PokemonDetail: React.FC = () => {
+const PokemonDetail: FC = () => {
   const { selectedPokemon, setSelectedPokemon } = usePokemonContext();
 
   if (!selectedPokemon) return null;

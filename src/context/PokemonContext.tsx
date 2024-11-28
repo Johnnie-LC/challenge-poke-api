@@ -1,9 +1,5 @@
-/* eslint-disable react/react-in-jsx-scope */
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable react/prop-types */
+import { fetchPokemonDetails, fetchPokemonList } from "_service/api";
 import { createContext, useContext, useState } from "react";
-import { fetchPokemonDetails, fetchPokemonList } from "../service/api";
 
 interface Pokemon {
   name: string;
@@ -47,7 +43,7 @@ export const PokemonProvider: React.FC<{ children: React.ReactNode }> = ({
     null
   );
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null); // Estado de error
+  const [error, setError] = useState<string | null>(null);
   const [searchTerm, setSearchTerm] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const limit = 20;
@@ -60,8 +56,13 @@ export const PokemonProvider: React.FC<{ children: React.ReactNode }> = ({
       const data = await fetchPokemonList(limit, offset);
       setPokemons(data.results);
       setFilteredPokemons(data.results);
-    } catch (error: any) {
-      setError("Hubo un problema al cargar los Pokémon. Intenta nuevamente.");
+    } catch (error: unknown) {
+      // Verificación de tipo para un error desconocido
+      if (error instanceof Error) {
+        setError(error.message);
+      } else {
+        setError("Hubo un problema al cargar los Pokémon. Intenta nuevamente.");
+      }
     } finally {
       setLoading(false);
     }
@@ -73,8 +74,13 @@ export const PokemonProvider: React.FC<{ children: React.ReactNode }> = ({
     try {
       const data = await fetchPokemonDetails(url);
       setSelectedPokemon(data);
-    } catch (error: any) {
-      setError("Hubo un problema al cargar los detalles del Pokémon.");
+    } catch (error: unknown) {
+      // Verificación de tipo para un error desconocido
+      if (error instanceof Error) {
+        setError(error.message);
+      } else {
+        setError("Hubo un problema al cargar los detalles del Pokémon.");
+      }
     } finally {
       setLoading(false);
     }
